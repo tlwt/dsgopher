@@ -24,6 +24,26 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#config-web-app -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAeX_IeiY6_xhlcnkF1mYd4UWGCyKWW-Tw",
+        authDomain: "dsgopher.firebaseapp.com",
+        databaseURL: "https://dsgopher.firebaseio.com",
+        projectId: "dsgopher",
+        storageBucket: "dsgopher.appspot.com",
+        messagingSenderId: "492004552133",
+        appId: "1:492004552133:web:59c98c4cbe1fe450"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
