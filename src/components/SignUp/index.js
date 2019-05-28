@@ -18,6 +18,8 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
+  realName: '',
+  address: '',
   error: null,
 };
 
@@ -29,7 +31,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-     const { username, email, passwordOne } = this.state;
+     const { username, email, passwordOne, address, realName } = this.state;
 
         this.props.firebase
           .doCreateUserWithEmailAndPassword(email, passwordOne)
@@ -40,6 +42,8 @@ class SignUpFormBase extends Component {
             .set({
               username,
               email,
+              realName,
+              address,
             });
           })
          .then(authUser => {
@@ -63,6 +67,8 @@ class SignUpFormBase extends Component {
       email,
       passwordOne,
       passwordTwo,
+      address,
+      realName,
       error,
     } = this.state;
     
@@ -70,7 +76,9 @@ class SignUpFormBase extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === '' ||
+      address === '' ||
+      realName === '';
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -79,13 +87,13 @@ class SignUpFormBase extends Component {
           value={username}
           onChange={this.onChange}
           type="text"
-          placeholder="Full Name"
+          placeholder="Username"
         />
         <input
           name="email"
           value={email}
           onChange={this.onChange}
-          type="text"
+          type="email"
           placeholder="Email Address"
         />
         <input
@@ -101,6 +109,20 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
+        />
+        <input
+          name="realName"
+          value={realName}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Real Name"
+        />
+        <input
+          name="address"
+          value={address}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Address"
         />
         <button disabled={isInvalid} type="submit">Sign Up</button>
 
