@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { FirebaseContext } from '../Firebase';
 import { withFirebase } from '../Firebase';
 import { compose } from 'recompose';
+import Geosuggest from 'react-geosuggest';
 
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -96,7 +97,7 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-		<input
+		    <input
           name="username"
           value={username}
           onChange={this.onChange}
@@ -131,12 +132,12 @@ class SignUpFormBase extends Component {
           type="text"
           placeholder="Real Name"
         />
-        <input
+        <Geosuggest
           name="address"
           value={address}
-          onChange={this.onChange}
-          type="text"
+          ref={el=>this._geoSuggest=el}
           placeholder="Address"
+          onSuggestSelect={this.onChange}
         />
         <label>
           Admin:
@@ -147,7 +148,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChangeCheckbox}
           />
         </label>
-        <button disabled={isInvalid} type="submit">Sign Up</button>
+        <button disabled={isInvalid} type="submit" onClick={()=>this._geoSuggest.selectSuggest()}>Sign Up</button>
 
         {error && <p>{error.message}</p>}
       </form>

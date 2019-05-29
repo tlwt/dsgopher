@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Geosuggest from 'react-geosuggest';
 
 import { FirebaseContext, withFirebase } from '../Firebase';
 import { withAuthorization } from '../Session';
@@ -28,6 +29,10 @@ class AddressChangeForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
+  onSuggestSelect = suggest => {
+    this.setState({ address: suggest })
+  }
+
   componentDidMount() {
     this.listener = this.props.firebase.onAuthUserListener(
       authUser => {
@@ -49,12 +54,12 @@ class AddressChangeForm extends Component {
       <div>
         <p>Current Address: {authUser.address}</p>
         <form onSubmit={this.onSubmit}>
-          <input
+          <Geosuggest
             name="newAddress"
             value={newAddress}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Enter New Address"
+            ref={el=>this._geoSuggest=el}
+            placeholder="Enter new address"
+            onSuggestSelect={this.onSuggestSelect}
           />
           <button disabled={isInvalid} type="submit">
             Reset My Address
