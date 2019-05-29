@@ -46,27 +46,23 @@ class AddressChangeForm extends Component {
       newAddress === '';
 
     return (
-      //<AuthUserContext.Consumer>
-        //{authUser => (
-          <div>
-            <h1>{authUser.address}</h1>
-            <form onSubmit={this.onSubmit}>
-              <input
-                name="newAddress"
-                value={newAddress}
-                onChange={this.onChange}
-                type="text"
-                placeholder="Enter New Address"
-              />
-              <button disabled={isInvalid} type="submit">
-                Reset My Address
-              </button>
+      <div>
+        <p>Current Address: {authUser.address}</p>
+        <form onSubmit={this.onSubmit}>
+          <input
+            name="newAddress"
+            value={newAddress}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Enter New Address"
+          />
+          <button disabled={isInvalid} type="submit">
+            Reset My Address
+          </button>
 
-              {error && <p>{error.message}</p>}
-            </form>
-          </div>
-        //)}
-      //</AuthUserContext.Consumer>   
+          {error && <p>{error.message}</p>}
+        </form>
+      </div>
     );
   }
 }

@@ -13,7 +13,6 @@ const AccountPage = () => (
 		    <h1>Account: {authUser.email}</h1>
 		    <PasswordForgetForm />
 		    <PasswordChangeForm />
-		    <p>Address: TODO</p>
 		    <AddressChangeForm />
 		  </div>
 		)}
